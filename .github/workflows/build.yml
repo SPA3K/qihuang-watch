@@ -12,23 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 环境信息
-        run: |
-          echo "=== Runner ==="
-          sw_vers
-          xcodebuild -version 2>/dev/null || echo "no xcodebuild"
-          echo "=== 目录 ==="
-          ls -la
-
       - name: 安装 xcodegen
         run: brew install xcodegen
 
       - name: 生成项目
-        timeout-minutes: 3
         run: |
-          set -x
-          xcodegen generate --verbose 2>&1
-          echo "退出码: $?"
+          xcodegen generate
+          echo "=== 项目已生成 ==="
           ls -la *.xcodeproj
 
       - name: 编译 iPhone
