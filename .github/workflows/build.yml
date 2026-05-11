@@ -12,14 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 安装 xcodegen
-        run: brew install xcodegen
-
-      - name: 生成项目
-        run: |
-          xcodegen generate
-          echo "=== 项目已生成 ==="
-          ls -la *.xcodeproj
+      - name: 生成 Xcode 项目
+        run: python3 scripts/generate_project.py
 
       - name: 编译 iPhone
         run: |
