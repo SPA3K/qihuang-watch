@@ -1,0 +1,16 @@
+name: Test Runner
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-14
+    timeout-minutes: 10
+    steps:
+      - run: echo "🎉 Hello from macOS runner!"
+      - run: uname -a
+      - run: which xcodebuild && xcodebuild -version
+      - run: echo "✅ Runner works!"

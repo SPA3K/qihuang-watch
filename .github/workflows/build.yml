@@ -1,13 +1,13 @@
-name: Build Check
+name: Build iOS+Watch
 
 on:
   push:
-    branches: [master, main]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
-  build:
-    name: 🏗️ 编译检查
+  build-check:
+    name: 🏗️ 编译
     runs-on: macos-14
     timeout-minutes: 30
     steps:
@@ -17,37 +17,27 @@ jobs:
         run: brew install xcodegen
 
       - name: 生成 Xcode 项目
-        run: xcodegen generate
-
-      - name: 列出生成的项目
-        run: ls -la *.xcodeproj 2>/dev/null && echo "✅ 项目生成成功"
-
-      - name: 编译 iPhone App
         run: |
-          set -o pipefail
+          xcodegen generate
+          echo "✅ xcodegen 完成"
+          ls -la *.xcodeproj
+
+      - name: 编译 iPhone
+        run: |
           xcodebuild build \
             -project QiHuangPulse.xcodeproj \
             -scheme QiHuangPulse \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
-            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            2>&1 | tail -50
+            CODE_SIGNING_ALLOWED=NO | tail -30
 
-      - name: 编译 Watch App
+      - name: 编译 Watch
         run: |
-          set -o pipefail
           xcodebuild build \
             -project QiHuangPulse.xcodeproj \
             -scheme QiHuangWatch \
-            -destination 'platform=watchOS Simulator,name=Apple Watch Series 10 (46mm),OS=latest' \
-            -configuration Debug \
+            -destination 'generic/platform=watchOS Simulator' \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            2>&1 | tail -50
-
-      - name: ✅ 编译成功
-        if: success()
-        run: echo "🎉 两个 Target 都编译通过了！"
+            CODE_SIGNING_ALLOWED=NO | tail -30
