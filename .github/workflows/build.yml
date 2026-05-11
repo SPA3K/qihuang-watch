@@ -6,21 +6,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-check:
-    name: 🏗️ 编译
+  build:
     runs-on: macos-14
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-
-      - name: 安装 xcodegen
-        run: brew install xcodegen
-
-      - name: 生成 Xcode 项目
-        run: |
-          xcodegen generate
-          echo "✅ xcodegen 完成"
-          ls -la *.xcodeproj
 
       - name: 编译 iPhone
         run: |
@@ -30,7 +20,7 @@ jobs:
             -destination 'generic/platform=iOS Simulator' \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO | tail -30
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tail -30
 
       - name: 编译 Watch
         run: |
@@ -40,4 +30,4 @@ jobs:
             -destination 'generic/platform=watchOS Simulator' \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO | tail -30
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tail -30
