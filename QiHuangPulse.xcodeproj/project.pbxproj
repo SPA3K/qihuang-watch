@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		12D8373203967C5C796E11F4 /* QiHuangiPhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B962336202F6A18050A569 /* QiHuangiPhoneApp.swift */; };
+		4CBA44D2EA6204B221D097A4 /* iPhoneHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32300004AA49A1DE691F5AC /* iPhoneHomeView.swift */; };
+		78BBBFAAFD2A9EAEBEA48883 /* HealthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34560DA1C13C4249E278E441 /* HealthModels.swift */; };
+		4478F5470D1CC96C8D8F7C38 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B1A3C16FE52000BDD06833 /* AIService.swift */; };
+		7648FB35EA73B829C0874608 /* HealthKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606902780D4F8177E379E4 /* HealthKitService.swift */; };
+		4608434FFA9FBBB0F960D102 /* ScoringEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52692A5BA636D24E567668AD /* ScoringEngine.swift */; };
+		0E58990964D32D9F1A51ED15 /* QiHuangViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE9781D9C3662F92603CDAB /* QiHuangViewModel.swift */; };
+		E0FAFE7061A5B143AAED8BEC /* Secrets.swift.example in Sources */ = {isa = PBXBuildFile; fileRef = 7FD8D9B5949907EBCCC9E910 /* Secrets.swift.example */; };
+		B4F5913B1B6D09F00F4F4613 /* QiHuangWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2927A153C002DCFDD295662A /* QiHuangWatchApp.swift */; };
+		5334AE249850B16A86364FEE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A3BC9E77D33126EE6DFD3E /* ContentView.swift */; };
+		946AE83DE9B5518651E8A3C4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085DB717579B43DC11C91C5B /* HomeView.swift */; };
+		00E114DA610CC7D73C6729F8 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204394CCB74956B996399AE /* JournalView.swift */; };
+		B06307C1025E5FB1CDD0A833 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248E0AD93A6342A5BB57B5BF /* ProfileView.swift */; };
+		2AD772EAB8EFA4871E92249E /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB513DFC3F91F01E10855BD /* TrendsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		15B962336202F6A18050A569 /* QiHuangiPhoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiHuangiPhoneApp.swift; sourceTree = "<group>"; };
+		B32300004AA49A1DE691F5AC /* iPhoneHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneHomeView.swift; sourceTree = "<group>"; };
+		34560DA1C13C4249E278E441 /* HealthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthModels.swift; sourceTree = "<group>"; };
+		E8B1A3C16FE52000BDD06833 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
+		5A606902780D4F8177E379E4 /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitService.swift; sourceTree = "<group>"; };
+		52692A5BA636D24E567668AD /* ScoringEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringEngine.swift; sourceTree = "<group>"; };
+		2CE9781D9C3662F92603CDAB /* QiHuangViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiHuangViewModel.swift; sourceTree = "<group>"; };
+		7FD8D9B5949907EBCCC9E910 /* Secrets.swift.example */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift.example; sourceTree = "<group>"; };
+		2927A153C002DCFDD295662A /* QiHuangWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiHuangWatchApp.swift; sourceTree = "<group>"; };
+		B5A3BC9E77D33126EE6DFD3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		085DB717579B43DC11C91C5B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5204394CCB74956B996399AE /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		248E0AD93A6342A5BB57B5BF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		0EB513DFC3F91F01E10855BD /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
+		EDD95F28648DD3ADE72B6E15 /* QiHuangPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QiHuangPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A633329EEF77840C40F8DF2 /* QiHuangWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QiHuangWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E7D43875D64A788B24FD2BAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78345CD341549A9690C6D0C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DE654C8DBD5BBE70B4375B31 = {
+			isa = PBXGroup;
+			children = (
+				C8B345E59DA3EBB43D6D45DA /* iPhone */,
+				4F7582B342BA64CC0F2E70E9 /* Sources */,
+				AFC1319111FF15C1E11FE541 /* Watch */,
+				744A95898DE740F67D27B048 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C8B345E59DA3EBB43D6D45DA /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				15B962336202F6A18050A569 /* QiHuangiPhoneApp.swift */,
+				B32300004AA49A1DE691F5AC /* iPhoneHomeView.swift */,
+			);
+			path = iPhone;
+			sourceTree = "<group>";
+		};
+		4F7582B342BA64CC0F2E70E9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				34560DA1C13C4249E278E441 /* HealthModels.swift */,
+				E8B1A3C16FE52000BDD06833 /* AIService.swift */,
+				5A606902780D4F8177E379E4 /* HealthKitService.swift */,
+				52692A5BA636D24E567668AD /* ScoringEngine.swift */,
+				2CE9781D9C3662F92603CDAB /* QiHuangViewModel.swift */,
+				7FD8D9B5949907EBCCC9E910 /* Secrets.swift.example */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		AFC1319111FF15C1E11FE541 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				2927A153C002DCFDD295662A /* QiHuangWatchApp.swift */,
+				B5A3BC9E77D33126EE6DFD3E /* ContentView.swift */,
+				085DB717579B43DC11C91C5B /* HomeView.swift */,
+				5204394CCB74956B996399AE /* JournalView.swift */,
+				248E0AD93A6342A5BB57B5BF /* ProfileView.swift */,
+				0EB513DFC3F91F01E10855BD /* TrendsView.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		744A95898DE740F67D27B048 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EDD95F28648DD3ADE72B6E15 /* QiHuangPulse.app */,
+				9A633329EEF77840C40F8DF2 /* QiHuangWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C54B4DE43A78FBFEC9DE46F9 /* QiHuangPulse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 872204D122B799E0B10DD845;
+			buildPhases = (
+				16F44B12E401AF192DA85768 /* Sources */,
+				E7D43875D64A788B24FD2BAC /* Frameworks */,
+				5BD0D08C2BCFC3F0A678DCCA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QiHuangPulse;
+			productName = QiHuangPulse;
+			productReference = EDD95F28648DD3ADE72B6E15 /* QiHuangPulse.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A35AF5C71774126D1F5D2D03 /* QiHuangWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8202FF55012C9F522867AE9F;
+			buildPhases = (
+				65A09A190AB406F0650B5433 /* Sources */,
+				78345CD341549A9690C6D0C4 /* Frameworks */,
+				1B763D1377CAA385EF5B32C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3078C5F3B81120A2845F3201 /* PBXTargetDependency */,
+			);
+			name = QiHuangWatch;
+			productName = QiHuangWatch;
+			productReference = 9A633329EEF77840C40F8DF2 /* QiHuangWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		41D50DCA80DD23D8402F15E1 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 831AF2DD51DFF858F5BA9520;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = zh_CN;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				zh_CN,
+				Base,
+			);
+			mainGroup = DE654C8DBD5BBE70B4375B31;
+			productRefGroup = 744A95898DE740F67D27B048 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C54B4DE43A78FBFEC9DE46F9 /* QiHuangPulse */,
+				A35AF5C71774126D1F5D2D03 /* QiHuangWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		16F44B12E401AF192DA85768 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12D8373203967C5C796E11F4 /* QiHuangiPhoneApp.swift */,
+				4CBA44D2EA6204B221D097A4 /* iPhoneHomeView.swift */,
+				78BBBFAAFD2A9EAEBEA48883 /* HealthModels.swift */,
+				4478F5470D1CC96C8D8F7C38 /* AIService.swift */,
+				7648FB35EA73B829C0874608 /* HealthKitService.swift */,
+				4608434FFA9FBBB0F960D102 /* ScoringEngine.swift */,
+				0E58990964D32D9F1A51ED15 /* QiHuangViewModel.swift */,
+				E0FAFE7061A5B143AAED8BEC /* Secrets.swift.example */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65A09A190AB406F0650B5433 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4F5913B1B6D09F00F4F4613 /* QiHuangWatchApp.swift */,
+				5334AE249850B16A86364FEE /* ContentView.swift */,
+				946AE83DE9B5518651E8A3C4 /* HomeView.swift */,
+				00E114DA610CC7D73C6729F8 /* JournalView.swift */,
+				B06307C1025E5FB1CDD0A833 /* ProfileView.swift */,
+				2AD772EAB8EFA4871E92249E /* TrendsView.swift */,
+				78BBBFAAFD2A9EAEBEA48883 /* HealthModels.swift */,
+				4478F5470D1CC96C8D8F7C38 /* AIService.swift */,
+				7648FB35EA73B829C0874608 /* HealthKitService.swift */,
+				4608434FFA9FBBB0F960D102 /* ScoringEngine.swift */,
+				0E58990964D32D9F1A51ED15 /* QiHuangViewModel.swift */,
+				E0FAFE7061A5B143AAED8BEC /* Secrets.swift.example */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5BD0D08C2BCFC3F0A678DCCA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B763D1377CAA385EF5B32C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		ED8F6250A3F36F4B976DE17B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "岐黄脉镜";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qihuang.pulse.iphone;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		81214A31D16E68F07AFD9CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "岐黄脉镜";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qihuang.pulse.iphone;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D06DA1A98E7B7823172B0E75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY WKApplication = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "岐黄脉镜";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.qihuang.pulse.iphone;
+				INFOPLIST_KEY_WKSupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qihuang.pulse.watchkitapp;
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		AF4EEC4AD8EEBAB80D4EA272 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY WKApplication = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "岐黄脉镜";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.qihuang.pulse.iphone;
+				INFOPLIST_KEY_WKSupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qihuang.pulse.watchkitapp;
+				SDKROOT = watchos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		097E411BBBC2BDB649C7FEB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1 $(inherited)";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+			};
+			name = Debug;
+		};
+		A3A132A077E29EA88E2990D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin PBXTargetDependency section */
+		3078C5F3B81120A2845F3201 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C54B4DE43A78FBFEC9DE46F9 /* QiHuangPulse */;
+			targetProxy = 48A9646505D30B83789F5079 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		48A9646505D30B83789F5079 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = <PBXProject>;
+			proxyType = 1;
+			remoteGlobalIDString = C54B4DE43A78FBFEC9DE46F9;
+			remoteInfo = QiHuangPulse;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin XCConfigurationList section */
+		872204D122B799E0B10DD845 /* Build configuration list for PBXNativeTarget "QiHuangPulse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED8F6250A3F36F4B976DE17B /* Debug */,
+				81214A31D16E68F07AFD9CE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8202FF55012C9F522867AE9F /* Build configuration list for PBXNativeTarget "QiHuangWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D06DA1A98E7B7823172B0E75 /* Debug */,
+				AF4EEC4AD8EEBAB80D4EA272 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		831AF2DD51DFF858F5BA9520 /* Build configuration list for PBXProject "QiHuangPulse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				097E411BBBC2BDB649C7FEB4 /* Debug */,
+				A3A132A077E29EA88E2990D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 5A65D2DDB0246D3CFBA219E8 /* Project object */;
+}
