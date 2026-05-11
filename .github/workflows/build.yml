@@ -7,27 +7,46 @@ on:
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: macos-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+
+      - name: 环境信息
+        run: |
+          echo "=== Runner ==="
+          sw_vers
+          xcodebuild -version 2>/dev/null || echo "no xcodebuild"
+          echo "=== 目录 ==="
+          ls -la
+
+      - name: 安装 xcodegen
+        run: brew install xcodegen
+
+      - name: 生成项目
+        timeout-minutes: 3
+        run: |
+          set -x
+          xcodegen generate --verbose 2>&1
+          echo "退出码: $?"
+          ls -la *.xcodeproj
 
       - name: 编译 iPhone
         run: |
           xcodebuild build \
             -project QiHuangPulse.xcodeproj \
             -scheme QiHuangPulse \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination "generic/platform=iOS Simulator" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO 2>&1 | tail -30
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tail -50
 
       - name: 编译 Watch
         run: |
           xcodebuild build \
             -project QiHuangPulse.xcodeproj \
             -scheme QiHuangWatch \
-            -destination 'generic/platform=watchOS Simulator' \
+            -destination "generic/platform=watchOS Simulator" \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO 2>&1 | tail -30
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tail -50
