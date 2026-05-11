@@ -1,22 +1,68 @@
-name: QiHuangWatch
+name: QiHuangPulse
 options:
   bundleIdPrefix: com.qihuang.pulse
   deploymentTarget:
+    iOS: "17.0"
     watchOS: "10.0"
   generateEmptyDirectories: true
   groupSortPosition: top
 
 settings:
   SWIFT_VERSION: "5.9"
-  TARGETED_DEVICE_FAMILY: "4"  # Apple Watch only
 
 targets:
+  # ═══════════════════════════════════════════
+  # iPhone 配套 App
+  # ═══════════════════════════════════════════
+  QiHuangPulse:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: iPhone
+        group: iPhone
+      - path: Sources/Models
+        group: Shared/Models
+      - path: Sources/Services
+        group: Shared/Services
+      - path: Sources/ViewModels
+        group: Shared/ViewModels
+      - path: Sources/Config
+        group: Config
+    info:
+      path: iPhone/Info.plist
+      properties:
+        CFBundleDisplayName: "岐黄脉镜"
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        NSHealthShareUsageDescription: "岐黄脉镜需要读取您的健康数据进行中医脉象分析"
+        NSHealthUpdateUsageDescription: "岐黄脉镜需要访问健康数据以提供健康评估"
+    entitlements:
+      path: iPhone/QiHuangPulse.entitlements
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.qihuang.pulse.iphone
+      TARGETED_DEVICE_FAMILY: "1,2"
+
+  # ═══════════════════════════════════════════
+  # Apple Watch App
+  # ═══════════════════════════════════════════
   QiHuangWatch:
     type: application
     platform: watchOS
     deploymentTarget: "10.0"
     sources:
-      - Sources
+      - path: Sources/App
+        group: Watch/App
+      - path: Sources/Models
+        group: Shared/Models
+      - path: Sources/Services
+        group: Shared/Services
+      - path: Sources/ViewModels
+        group: Shared/ViewModels
+      - path: Sources/Views
+        group: Watch/Views
+      - path: Sources/Config
+        group: Config
     info:
       path: Resources/Info.plist
       properties:
@@ -25,10 +71,12 @@ targets:
         CFBundleVersion: "1"
         WKApplication: true
         WKCompanionAppBundleIdentifier: com.qihuang.pulse.iphone
-        HealthShareUsageDescription: "岐黄脉镜需要读取您的健康数据进行中医脉象分析"
+        NSHealthShareUsageDescription: "岐黄脉镜需要读取您的健康数据进行中医脉象分析"
         NSHealthUpdateUsageDescription: "岐黄脉镜需要访问健康数据以提供健康评估"
     entitlements:
       path: Resources/QiHuangWatch.entitlements
+    dependencies:
+      - target: QiHuangPulse
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.qihuang.pulse.watchkitapp
       INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.qihuang.pulse.iphone
