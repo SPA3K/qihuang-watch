@@ -1,0 +1,29 @@
+# Build
+build/
+DerivedData/
+
+# Secrets — 永远不要提交
+Sources/Config/Secrets.swift
+
+# Xcode
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.pbxuser
+*.perspective
+*.perspectivev3
+xcuserdata/
+*.xcodeproj
+*.xcworkspace
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+Packages/
+
+# macOS
+.DS_Store
+*.swp
+*~

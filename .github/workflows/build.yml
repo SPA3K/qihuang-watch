@@ -1,0 +1,185 @@
+name: Build & Sign iOS+Watch App
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:  # 手动触发按钮
+
+env:
+  PROJECT_NAME: QiHuangPulse
+
+jobs:
+  # ═══════════════════════════════════════════
+  # 第1步：编译检查（无需签名，验证代码正确性）
+  # ═══════════════════════════════════════════
+  build-check:
+    name: 🔍 编译检查
+    runs-on: macos-14  # Apple Silicon runner (免费)
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装 xcodegen
+        run: brew install xcodegen
+
+      - name: 生成 Xcode 项目
+        run: xcodegen generate
+
+      - name: 编译 iPhone App (模拟器)
+        run: |
+          xcodebuild build \
+            -project ${{ env.PROJECT_NAME }}.xcodeproj \
+            -scheme QiHuangPulse \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            | tail -20
+
+      - name: 编译 Watch App (模拟器)
+        run: |
+          xcodebuild build \
+            -project ${{ env.PROJECT_NAME }}.xcodeproj \
+            -scheme QiHuangWatch \
+            -destination 'platform=watchOS Simulator,name=Apple Watch Series 9 (45mm),OS=latest' \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            | tail -20
+
+  # ═══════════════════════════════════════════
+  # 第2步：签名构建 + 导出 .ipa（需要配置 Secrets）
+  # ═══════════════════════════════════════════
+  export-ipa:
+    name: 📦 导出 IPA
+    runs-on: macos-14
+    needs: build-check
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装 xcodegen
+        run: brew install xcodegen
+
+      - name: 生成 Xcode 项目
+        run: xcodegen generate
+
+      # ─── 证书 & 描述文件配置 ───
+      - name: 解码签名证书
+        if: env.HAS_CERTIFICATE == 'true'
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+        run: |
+          # 创建临时钥匙串
+          KEYCHAIN_PATH=$RUNNER_TEMP/build.keychain
+          security create-keychain -p "" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "" "$KEYCHAIN_PATH"
+          
+          # 解码证书并导入
+          CERT_PATH=$RUNNER_TEMP/certificate.p12
+          echo "$CERTIFICATE_BASE64" | base64 --decode > "$CERT_PATH"
+          security import "$CERT_PATH" \
+            -P "$CERTIFICATE_PASSWORD" \
+            -A -t cert -f pkcs12 \
+            -k "$KEYCHAIN_PATH"
+          security set-key-partition-list \
+            -S apple-tool:,apple: \
+            -k "" "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
+
+      - name: 安装 Provisioning Profile
+        if: env.HAS_PROFILE == 'true'
+        env:
+          PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          PROFILE_PATH=$RUNNER_TEMP/profile.mobileprovision
+          echo "$PROFILE_BASE64" | base64 --decode > "$PROFILE_PATH"
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          UUID=$(security cms -D -i "$PROFILE_PATH" | plutil -extract UUID raw -)
+          cp "$PROFILE_PATH" ~/Library/MobileDevice/Provisioning\ Profiles/"$UUID".mobileprovision
+          echo "PROFILE_UUID=$UUID" >> $GITHUB_ENV
+
+      # ─── 构建 & 导出 ───
+      - name: Archive iPhone App
+        if: env.HAS_CERTIFICATE == 'true'
+        run: |
+          xcodebuild archive \
+            -project ${{ env.PROJECT_NAME }}.xcodeproj \
+            -scheme QiHuangPulse \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/QiHuangPulse.xcarchive \
+            -allowProvisioningUpdates \
+            DEVELOPMENT_TEAM="${{ secrets.DEVELOPMENT_TEAM_ID }}" \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="iPhone Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="${{ secrets.PROVISION_PROFILE_NAME }}" \
+            | tail -30
+
+      - name: Export IPA
+        if: env.HAS_CERTIFICATE == 'true'
+        run: |
+          # 创建导出选项
+          cat > ExportOptions.plist << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>ad-hoc</string>
+            <key>stripSwiftSymbols</key>
+            <true/>
+            <key>teamID</key>
+            <string>${{ secrets.DEVELOPMENT_TEAM_ID }}</string>
+          </dict>
+          </plist>
+          EOF
+          
+          xcodebuild -exportArchive \
+            -archivePath build/QiHuangPulse.xcarchive \
+            -exportOptionsPlist ExportOptions.plist \
+            -exportPath build/output \
+            | tail -10
+
+      - name: 上传 IPA 产物
+        if: env.HAS_CERTIFICATE == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: QiHuangPulse-IPA
+          path: build/output/*.ipa
+          retention-days: 30
+
+      # ─── 未配置签名时显示提示 ───
+      - name: 未签名提示
+        if: env.HAS_CERTIFICATE != 'true'
+        run: |
+          echo ""
+          echo "╔══════════════════════════════════════════════════════╗"
+          echo "║  ⚠️  签名证书未配置，跳过 IPA 导出                    ║"
+          echo "║                                                      ║"
+          echo "║  请参考 README 配置 GitHub Secrets:                   ║"
+          echo "║  1. CERTIFICATE_BASE64                                ║"
+          echo "║  2. CERTIFICATE_PASSWORD                              ║"
+          echo "║  3. PROVISIONING_PROFILE_BASE64                       ║"
+          echo "║  4. DEVELOPMENT_TEAM_ID                               ║"
+          echo "╚══════════════════════════════════════════════════════╝"
+
+  # ═══════════════════════════════════════════
+  # 第3步：TestFlight 发布（可选，需 App Store Connect）
+  # ═══════════════════════════════════════════
+  # testflight:
+  #   name: 🚀 TestFlight
+  #   runs-on: macos-14
+  #   needs: export-ipa
+  #   if: github.ref == 'refs/heads/main'
+  #   steps:
+  #     - uses: apple-actions/upload-testflight-build@v1
+  #       with:
+  #         app-path: artifacts/*.ipa
+  #         issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+  #         api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+  #         api-private-key: ${{ secrets.APP_STORE_CONNECT_KEY }}
